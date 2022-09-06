@@ -1,0 +1,40 @@
+//-----Server script-----
+
+(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */ 
+
+	data.buttonText = "";
+
+	var accObj = new GlideRecord('x_gooa_agri_pid_account');
+	accObj.addEncodedQuery('applicant_nameDYNAMIC90d1921e5f510100a9ad2572f2b477fe');
+	accObj.query();
+	if(accObj.hasNext()){
+		data.buttonText = 'Add New Premises';
+	}else{
+		data.buttonText	= 'Create New Account';
+	}
+
+
+})();
+
+
+// ------Client script ------
+
+
+api.controller=function() {
+  /* widget controller */
+  var c = this;
+};
+
+
+//------- HTML template-------
+
+<div>
+  <div id="premises" style="border-style: ridge; height: 14.5em;">
+    <p><span style="font-size: 21px;"><strong><img style="width: 63px; height: 80px;" src="premised.png" />&nbsp; &nbsp;Premises Registration&nbsp;</strong></span></p>
+    <p style="padding-left: 4.5em; position: relative; top: -1.5em; font-size: 15px;">A premises is a land location where animals are bred, kept, raised, displayed, assembled or disposed of.<br /> <br />Once the Premises registration process is complete, it will be issued a PID Number, which is a nine character unique identifier (consisting of a combination of numbers and letters) that is associated with that specific land location. Alberta PID Numbers start with the letters &lsquo;AA&rsquo;.</p>
+    <div style="float: right; padding-right: 0.5em; margin-top: -49px;"><a href="/pid?id=sc_cat_item&amp;sys_id=cc97f7aadb8ab850f61a3ec8f49619d8">
+      <button style="width: 100%; color: #fff; background-color: #0070c4; text-align: center; vertical-align: middle; touch-action: manipulation; display: inline-block; border-color: #fff; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; padding: 6px 12px; font-size: 18px; line-height: 1.556; border-radius: 4px;">{{data.buttonText}} &rarr;</button></a></div>
+  </div>
+</div>
